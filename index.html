@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Noel Ng'ona — Full Stack Software Engineer</title>
+<link rel="icon" href="noel.jpg">
+<meta property="og:image" content="noel.jpg">
+<meta name="description" content="Noel Ng'ona is a full stack software engineer with 7+ years on education and health information systems, now adding data science and AI. Open to new roles.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --surface: #ffffff;
+    --ink: #1a1a17;
+    --muted: #6b6a63;
+    --line: #e2dfd6;
+    --accent: #1f6f5c;
+    --accent-soft: #e3efe9;
+    --chip: #efece4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121311;
+      --surface: #1a1c19;
+      --ink: #ecebe6;
+      --muted: #9b9a92;
+      --line: #2b2d29;
+      --accent: #6fc2a8;
+      --accent-soft: #1d2b26;
+      --chip: #242622;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121311;
+    --surface: #1a1c19;
+    --ink: #ecebe6;
+    --muted: #9b9a92;
+    --line: #2b2d29;
+    --accent: #6fc2a8;
+    --accent-soft: #1d2b26;
+    --chip: #242622;
+  }
+
+  * { box-sizing: border-box; margin: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.6 Inter, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+  @media (max-width: 600px) { .wrap { padding: 0 16px; } }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { font-family: "Instrument Serif", serif; font-size: 24px; text-decoration: none; }
+  .links { display: flex; gap: 24px; align-items: center; }
+  .links a { text-decoration: none; color: var(--muted); font-size: 14px; }
+  .links a:hover { color: var(--ink); }
+  .theme-btn {
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+    width: 34px; height: 34px; border-radius: 50%; cursor: pointer; font-size: 15px;
+  }
+  @media (max-width: 600px) { .links a.hide-sm { display: none; } .links { gap: 16px; } }
+
+  /* Hero */
+  .hero { padding: 96px 0 72px; }
+  .eyebrow {
+    font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--accent);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  h1 {
+    font-family: "Instrument Serif", serif; font-weight: 400;
+    font-size: clamp(44px, 8vw, 88px); line-height: 1.02; letter-spacing: -0.02em;
+    margin: 20px 0 24px; max-width: 14ch;
+  }
+  h1 em { color: var(--accent); }
+  .lede { font-size: 19px; color: var(--muted); max-width: 58ch; }
+  .cta { display: flex; gap: 12px; margin-top: 36px; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: 12px 20px; border-radius: 999px; text-decoration: none;
+    font-weight: 500; font-size: 15px; border: 1px solid var(--line);
+  }
+  .btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .btn:hover { transform: translateY(-1px); }
+
+  .hero-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: center; }
+  .portrait { position: relative; justify-self: end; width: 100%; max-width: 360px; }
+  .portrait::before {
+    content: ""; position: absolute; inset: 18px -18px -18px 18px;
+    border: 1px solid var(--accent); border-radius: 24px;
+  }
+  .portrait img {
+    position: relative; display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%;
+    border-radius: 24px; background: var(--chip);
+  }
+  @media (max-width: 760px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .portrait { order: -1; justify-self: start; max-width: 180px; }
+    .portrait::before { inset: 10px -10px -10px 10px; border-radius: 20px; }
+    .portrait img { border-radius: 20px; aspect-ratio: 1; }
+  }
+
+  .stats {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+    background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden;
+    margin-top: 64px;
+  }
+  .stat { background: var(--surface); padding: 22px 24px; }
+  .stat b { font-family: "Instrument Serif", serif; font-weight: 400; font-size: 40px; display: block; line-height: 1; }
+  .stat span { color: var(--muted); font-size: 14px; }
+  @media (max-width: 600px) { .stats { grid-template-columns: 1fr; } }
+
+  /* Sections */
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  .sec-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 36px; flex-wrap: wrap; }
+  h2 { font-family: "Instrument Serif", serif; font-weight: 400; font-size: clamp(34px, 5vw, 48px); line-height: 1.05; }
+  .sec-head p { color: var(--muted); max-width: 44ch; }
+
+  /* Filters */
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; }
+  .filter {
+    border: 1px solid var(--line); background: transparent; color: var(--muted);
+    padding: 6px 14px; border-radius: 999px; font: 500 13px Inter, sans-serif; cursor: pointer;
+  }
+  .filter[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+
+  /* Projects */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 26px; display: flex; flex-direction: column; gap: 14px;
+    transition: border-color .2s, transform .2s;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card.featured { grid-column: span 2; background: var(--accent-soft); }
+  @media (max-width: 760px) { .card.featured { grid-column: auto; } }
+  .card-top { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+  .card h3 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+  .card .short { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); }
+  .status {
+    font-family: "JetBrains Mono", monospace; font-size: 11px; white-space: nowrap;
+    padding: 3px 9px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted);
+  }
+  .status.live { color: var(--accent); border-color: var(--accent); }
+  .card p { color: var(--muted); font-size: 15px; }
+  .card ul { padding-left: 18px; color: var(--muted); font-size: 14px; }
+  .card ul li { margin: 2px 0; }
+  .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: auto; padding-top: 6px; }
+  .tag { background: var(--chip); font-family: "JetBrains Mono", monospace; font-size: 12px; padding: 3px 9px; border-radius: 6px; }
+
+  h1 { max-width: 17ch; font-size: clamp(42px, 7vw, 76px); }
+
+  /* Direction */
+  .focus { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  @media (max-width: 760px) { .focus { grid-template-columns: 1fr; } }
+  .focus .card { gap: 10px; }
+  .focus .num { font-family: "Instrument Serif", serif; font-size: 44px; line-height: 1; color: var(--accent); }
+  .focus h3 { font-size: 19px; }
+  .open-to {
+    margin-top: 28px; padding: 22px 26px; border-radius: 16px; border: 1px dashed var(--accent);
+    display: flex; gap: 12px 20px; align-items: center; flex-wrap: wrap;
+  }
+  .open-to b { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; }
+  .open-to .roles { display: flex; gap: 8px; flex-wrap: wrap; }
+  .open-to .role { background: var(--surface); border: 1px solid var(--line); padding: 6px 14px; border-radius: 999px; font-size: 14px; font-weight: 500; }
+
+  /* Experience timeline */
+  .timeline { list-style: none; padding: 0; position: relative; }
+  .timeline::before { content: ""; position: absolute; left: 7px; top: 10px; bottom: 10px; width: 1px; background: var(--line); }
+  .job { position: relative; padding: 0 0 40px 40px; display: grid; grid-template-columns: 200px 1fr; gap: 24px; }
+  .job:last-child { padding-bottom: 0; }
+  .job::before {
+    content: ""; position: absolute; left: 0; top: 6px; width: 15px; height: 15px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--line);
+  }
+  .job.current::before { border-color: var(--accent); background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .job .when { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); padding-top: 2px; }
+  .job .when b { display: block; color: var(--ink); font-weight: 500; }
+  .job h3 { font-size: 19px; font-weight: 600; letter-spacing: -0.01em; }
+  .job .org { color: var(--accent); font-weight: 500; font-size: 15px; margin-bottom: 10px; }
+  .job .org span { color: var(--muted); font-weight: 400; }
+  .job p, .job li { color: var(--muted); font-size: 15px; }
+  .job ul { padding-left: 18px; margin-top: 6px; }
+  .job li { margin: 3px 0; }
+  .job .tags { margin-top: 12px; }
+  @media (max-width: 760px) {
+    .job { grid-template-columns: 1fr; gap: 6px; padding-left: 32px; }
+  }
+
+  .edu { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 56px; }
+  @media (max-width: 760px) { .edu { grid-template-columns: 1fr; } }
+  .edu .card { gap: 6px; }
+  .edu .kind { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; }
+  .edu h3 { font-size: 17px; }
+
+  /* Skills */
+  .skills { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+  @media (max-width: 900px) { .skills { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .skills { grid-template-columns: 1fr; gap: 24px; } }
+  .skills h4 { font-family: "JetBrains Mono", monospace; font-size: 12px; font-weight: 500; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 12px; }
+  .skills li { list-style: none; padding: 9px 0; border-bottom: 1px solid var(--line); }
+
+  /* About */
+  .about { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; }
+  @media (max-width: 760px) { .about { grid-template-columns: 1fr; gap: 20px; } }
+  .about p { color: var(--muted); font-size: 17px; margin-bottom: 16px; }
+  .about p strong { color: var(--ink); font-weight: 500; }
+
+  /* Contact */
+  .contact { text-align: center; padding: 96px 0; }
+  .contact h2 { font-size: clamp(40px, 7vw, 72px); margin-bottom: 20px; }
+  .contact a.mail { font-family: "Instrument Serif", serif; font-size: clamp(22px, 4vw, 32px); color: var(--accent); word-break: break-all; }
+  footer { border-top: 1px solid var(--line); padding: 28px 0; color: var(--muted); font-size: 13px; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">Noel Ng'ona</a>
+    <div class="links">
+      <a href="#focus" class="hide-sm">Focus</a>
+      <a href="#work">Work</a>
+      <a href="#experience" class="hide-sm">Experience</a>
+      <a href="#skills" class="hide-sm">Skills</a>
+      <a href="#about" class="hide-sm">About</a>
+      <a href="#contact">Contact</a>
+      <button class="theme-btn" id="theme" aria-label="Toggle dark mode">◐</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Full Stack Software Engineer · Open to new roles</span>
+        <h1>I engineer dependable software, <em>and bring data &amp;&nbsp;AI into&nbsp;it.</em></h1>
+        <p class="lede">Full stack software engineer with 7+ years building and supporting production systems for education and health in Malawi. I'm a Systems Developer at MUST today, and I'm adding data science and AI to my engineering through an MSc.</p>
+        <div class="cta">
+          <a class="btn primary" href="#work">See my work</a>
+          <a class="btn" href="mailto:noelngona@gmail.com">Get in touch</a>
+          <a class="btn" href="https://www.linkedin.com/in/noel-ngona/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        </div>
+      </div>
+      <figure class="portrait">
+        <img src="noel.jpg" alt="Portrait of Noel Ng'ona" width="567" height="567">
+      </figure>
+    </div>
+    <div class="stats" id="stats"></div>
+  </div>
+</header>
+
+<section id="focus">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>What I bring</h2>
+      <p>Software engineering is my core. I'm building on it with data science and AI, so the systems I build can do more with the data they hold.</p>
+    </div>
+    <div class="focus" id="focusList"></div>
+    <div class="open-to">
+      <b>Open to</b>
+      <div class="roles" id="roles"></div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Selected work</h2>
+      <p>Systems I've built and supported across education, health and the web.</p>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="projects"></div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Experience</h2>
+      <p>Seven years building and supporting academic and health information systems in Malawi.</p>
+    </div>
+    <ol class="timeline" id="jobs"></ol>
+    <div class="edu" id="edu"></div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head"><h2>Toolkit</h2></div>
+    <div class="skills" id="skillList"></div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about">
+    <h2>About</h2>
+    <div>
+      <p>I'm <strong>Noel Ng'ona</strong>, a full stack software engineer from Malawi. I'm a quick learner and a good communicator, and I've worked across <strong>health and academic information systems</strong>: deploying health systems at facilities with Baobab Health Trust, building university systems at LUANAR, and now developing platforms at the Malawi University of Science and Technology.</p>
+      <p>Much of my work is <strong>modernising legacy systems</strong> and turning everyday processes into reliable software that non-technical staff can use. I care about systems that are dependable, auditable and built around real users.</p>
+      <p>Software engineering remains at the centre of what I do. I'm adding <strong>data science and AI</strong> to it through an MSc in Data Science, and I'm keen on how AI can drive sustainable development in Malawi and beyond. I'm open to roles in any sector, not just education.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's work together.</h2>
+    <a class="mail" href="mailto:noelngona@gmail.com">noelngona@gmail.com</a>
+    <div class="cta" style="justify-content:center">
+      <a class="btn" href="https://www.linkedin.com/in/noel-ngona/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© <span id="year"></span> Noel Ng'ona</span>
+    <span>Blantyre, Malawi</span>
+  </div>
+</footer>
+
+<script>
+/* ===== Edit your content here ===== */
+const PROJECTS = [
+  {
+    name: "GPA SARIS",
+    short: "Student Academic Records Information System · MUST",
+    category: "Academic",
+    status: "In development",
+    featured: true,
+    desc: "A rebuild of MUST's student records system that moves the university from a 0–100 percentage model to GPA-based academic records.",
+    points: [
+      "Adds a grade-point layer with configurable grade scales",
+      "Replaces 20+ hard-coded progression rules with data-driven logic",
+      "Aims for feature parity with the legacy SARIS"
+    ],
+    tags: ["Laravel", "Vue 3", "Inertia", "Tailwind"]
+  },
+  {
+    name: "MUST SARIS",
+    short: "Legacy student records, assessment & finance · MUST",
+    category: "Academic",
+    status: "Maintained",
+    desc: "Support and improvements for the long-running system behind MUST's student records, assessment and finance workflows.",
+    tags: ["PHP", "Doctrine", "MySQL"]
+  },
+  {
+    name: "Conference Management System",
+    short: "conferences.must.ac.mw · MUST",
+    category: "Events",
+    status: "Live",
+    link: "https://conferences.must.ac.mw",
+    desc: "Conference setup, abstract and paper submissions, peer review, registration, payment-proof review, speakers and sponsors.",
+    tags: ["Laravel", "Vue 3", "Pest"]
+  },
+  {
+    name: "Hostel Management System",
+    short: "Student accommodation · MUST",
+    category: "Operations",
+    status: "In development",
+    desc: "Room allocation and hostel administration, integrated with SARIS for student data.",
+    tags: ["Laravel", "PHP", "Tailwind"]
+  },
+  {
+    name: "Curriculum System",
+    short: "Curriculum management · LUANAR",
+    category: "Academic",
+    status: "Delivered",
+    desc: "A system for managing the university's curriculum, built during my time as System Engineer at LUANAR.",
+    tags: ["Django REST Framework", "GitHub"]
+  },
+  {
+    name: "LUANAR SARIS Upgrades",
+    short: "Student Academic Records Information System · LUANAR",
+    category: "Academic",
+    status: "Delivered",
+    desc: "Added upgrades to LUANAR's student academic records system and supported its users, alongside support for the Moodle learning platform.",
+    points: [
+      "Built and shipped upgrades to the live SARIS system",
+      "Technical and user support for SARIS and Moodle"
+    ],
+    tags: ["SARIS", "Moodle", "User support"]
+  },
+  {
+    name: "LUANAR Research Portal",
+    short: "research.luanar.ac.mw · LUANAR",
+    category: "Research",
+    status: "Live",
+    link: "https://research.luanar.ac.mw",
+    desc: "The university's hub for finding, managing and sharing research: publications, projects, innovations, policy briefs, centres of excellence and calls for papers for the LUANAR Research Journal.",
+    tags: ["Research portal", "Publications", "Web"]
+  },
+  {
+    name: "Health Information Systems Rollout",
+    short: "PEPFAR–CDC project · Baobab Health Trust",
+    category: "Health",
+    status: "Delivered",
+    desc: "Deployed, upgraded and supported health information systems at multiple health facilities, within strict timelines.",
+    points: [
+      "Data quality checks on health data in deployed systems",
+      "End-user training, plus on-site and help-desk support"
+    ],
+    tags: ["Linux", "Deployment", "Data quality"]
+  },
+  {
+    name: "MUST Website",
+    short: "must.ac.mw · MUST",
+    category: "Web",
+    status: "Live",
+    link: "https://www.must.ac.mw",
+    desc: "The university's main public website: admissions and programmes, schools and departments, news, events, vacancies and links to SARIS, e-learning and online payments.",
+    tags: ["University website", "CMS", "Web"]
+  },
+  {
+    name: "ADDA Website",
+    short: "adda.must.ac.mw · African Drone and Data Academy",
+    category: "Web",
+    status: "Live",
+    link: "https://adda.must.ac.mw",
+    desc: "The public website of the African Drone and Data Academy at MUST, with courses, units, staff, news and events, and online applications.",
+    tags: ["Laravel", "Tailwind", "Alpine.js"]
+  },
+  {
+    name: "Personal Portfolio",
+    short: "This site",
+    category: "Web",
+    status: "Live",
+    desc: "A fast, single-file portfolio with project filters, an experience timeline and light and dark themes.",
+    tags: ["HTML", "CSS", "JavaScript"]
+  }
+];
+
+const FOCUS = [
+  {
+    title: "Full stack engineering",
+    text: "My day job. I design, build, test and support production systems end to end, from requirements with users to Laravel and Vue code, documentation and live support."
+  },
+  {
+    title: "Data science",
+    text: "Studying for an MSc in Data Science: statistics, machine learning and analysis, applied to the education and health data my systems already hold."
+  },
+  {
+    title: "AI engineering",
+    text: "Adding AI features to the software I build: LLM-powered tools, search over institutional documents, and smart automation in everyday systems."
+  },
+  {
+    title: "Digital transformation",
+    text: "Helping organisations move from paper and legacy software to data-driven decisions. I took part in ICTAM's 2025 Masterclass in Digital Strategy and Transformation."
+  }
+];
+
+const ROLES = ["Software Engineer", "Full Stack Developer", "AI Engineer", "Data Scientist", "IT Specialist"];
+
+const EXPERIENCE = [
+  {
+    title: "Systems Developer",
+    org: "Malawi University of Science and Technology",
+    type: "Full-time",
+    start: "Oct 2023", end: "Present",
+    place: "Thyolo, Malawi",
+    summary: "Design, build and support the university's software systems with a team of developers and a wide range of stakeholders.",
+    points: [
+      "Gather and analyse requirements with users and turn them into robust solutions",
+      "Write clean, tested code plus technical and user documentation",
+      "Test, refactor and reverse-engineer existing systems for reliability and performance",
+      "Support live systems and take part in university ICT projects"
+    ],
+    tags: ["Laravel", "Vue", "Laminas", "Software testing"]
+  },
+  {
+    title: "System Engineer",
+    org: "LUANAR – Lilongwe University of Agriculture and Natural Resources",
+    type: "Contract",
+    start: "Aug 2020", end: "Sep 2023",
+    place: "Lilongwe, Malawi",
+    summary: "Designed and developed software for the university and adapted existing software to new hardware.",
+    points: [
+      "Built the curriculum system, approval system and other university systems",
+      "Helped build the Malawi Biodiversity Portal with Nugsoft Technologies (Uganda) and mHub",
+      "Part of the team that built SARIS for Nalikule College of Education",
+      "Worked on the LUANAR Research Portal (research.luanar.ac.mw)",
+      "Added upgrades to LUANAR SARIS and supported users of SARIS and Moodle"
+    ],
+    tags: ["Django REST Framework", "GitHub", "Moodle"]
+  },
+  {
+    title: "Systems Engineer – Intern",
+    org: "LUANAR – Lilongwe University of Agriculture and Natural Resources",
+    type: "Internship",
+    start: "Oct 2019", end: "Jul 2020",
+    place: "Lilongwe, Malawi",
+    summary: "Designed and developed software applications and improved the performance of existing software.",
+    tags: ["GitHub", "Education software"]
+  },
+  {
+    title: "Software Deployment & Support Officer – Intern",
+    org: "Baobab Health Trust",
+    type: "Internship",
+    start: "Nov 2018", end: "Sep 2019",
+    place: "Lilongwe, Malawi",
+    summary: "Deployed, upgraded and supported health information systems at health facilities on a PEPFAR–CDC-funded project.",
+    points: [
+      "Rolled out system deployments and upgrades at sites within strict deadlines",
+      "Ran data quality checks on health data in deployed systems",
+      "Trained end users and gave on-site and remote support through the central help desk"
+    ],
+    tags: ["Linux", "Health information systems", "User training"]
+  }
+];
+
+const EDUCATION = [
+  { kind: "Degree", title: "MSc Data Science", where: "In progress" },
+  { kind: "Degree", title: "BSc Computer Science", where: "University of Malawi (Chancellor College) · 2013–2018", note: "Vice President, Computer Science Society, 2016–2018" },
+  { kind: "Certification", title: "CompTIA Network+ ce", where: "CompTIA · 2022–2025" }
+];
+
+const SKILLS = {
+  "Backend": ["PHP · Laravel", "Python · Django REST Framework", "Laminas / Zend Framework", "MySQL / MariaDB", "REST APIs & OAuth2"],
+  "Frontend": ["Vue 3", "Inertia.js", "Tailwind CSS", "Vite"],
+  "Data & AI": ["Python for data analysis", "Statistics & machine learning", "Data quality checks", "Dashboards & reporting"],
+  "Practice": ["Role-based access (Spatie)", "Audit trails & activity logs", "Testing with Pest / PHPUnit", "Legacy system migration"]
+};
+/* ================================== */
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function renderStats() {
+  const live = PROJECTS.filter(p => p.status === "Live").length;
+  const stacks = new Set(PROJECTS.flatMap(p => p.tags.map(t => t.split(" ")[0]))).size;
+  $("#stats").innerHTML = [
+    [PROJECTS.length, "systems built or maintained"],
+    [live, "live in production"],
+    [stacks, "technologies across projects"]
+  ].map(([n, l]) => `<div class="stat"><b>${n}</b><span>${l}</span></div>`).join("");
+}
+
+function renderProjects(cat) {
+  const list = cat === "All" ? PROJECTS : PROJECTS.filter(p => p.category === cat);
+  $("#projects").innerHTML = list.map(p => `
+    <article class="card${p.featured && cat === "All" ? " featured" : ""}">
+      <div class="card-top">
+        <div><h3>${esc(p.name)}</h3><div class="short">${esc(p.short)}</div></div>
+        <span class="status${p.status === "Live" ? " live" : ""}">${esc(p.status)}</span>
+      </div>
+      <p>${esc(p.desc)}</p>
+      ${p.points ? `<ul>${p.points.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+      ${p.link ? `<a href="${esc(p.link)}" target="_blank" rel="noopener">View project →</a>` : ""}
+      <div class="tags">${p.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div>
+    </article>`).join("");
+}
+
+function renderFilters() {
+  const cats = ["All", ...new Set(PROJECTS.map(p => p.category))];
+  $("#filters").innerHTML = cats.map(c => `<button class="filter" aria-pressed="${c === "All"}">${c}</button>`).join("");
+  $("#filters").addEventListener("click", e => {
+    if (!e.target.matches(".filter")) return;
+    document.querySelectorAll(".filter").forEach(b => b.setAttribute("aria-pressed", b === e.target));
+    renderProjects(e.target.textContent);
+  });
+}
+
+$("#focusList").innerHTML = FOCUS.map((f, i) => `
+  <div class="card">
+    <span class="num">0${i + 1}</span>
+    <h3>${esc(f.title)}</h3>
+    <p>${esc(f.text)}</p>
+  </div>`).join("");
+$("#roles").innerHTML = ROLES.map(r => `<span class="role">${esc(r)}</span>`).join("");
+
+$("#jobs").innerHTML =EXPERIENCE.map(j => `
+  <li class="job${j.end === "Present" ? " current" : ""}">
+    <div class="when"><b>${esc(j.start)} – ${esc(j.end)}</b>${esc(j.type)}<br>${esc(j.place)}</div>
+    <div>
+      <h3>${esc(j.title)}</h3>
+      <div class="org">${esc(j.org)}</div>
+      <p>${esc(j.summary)}</p>
+      ${j.points ? `<ul>${j.points.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+      <div class="tags">${j.tags.map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div>
+    </div>
+  </li>`).join("");
+
+$("#edu").innerHTML = EDUCATION.map(e => `
+  <div class="card">
+    <span class="kind">${esc(e.kind)}</span>
+    <h3>${esc(e.title)}</h3>
+    <p>${esc(e.where)}</p>
+    ${e.note ? `<p>${esc(e.note)}</p>` : ""}
+  </div>`).join("");
+
+$("#skillList").innerHTML = Object.entries(SKILLS)
+  .map(([k, v]) => `<div><h4>${k}</h4><ul>${v.map(s => `<li>${s}</li>`).join("")}</ul></div>`).join("");
+
+// Theme toggle (remembered per browser)
+const root = document.documentElement;
+try { const t = localStorage.getItem("theme"); if (t) root.dataset.theme = t; } catch {}
+$("#theme").addEventListener("click", () => {
+  const dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  root.dataset.theme = dark ? "light" : "dark";
+  try { localStorage.setItem("theme", root.dataset.theme); } catch {}
+});
+
+$("#year").textContent = new Date().getFullYear();
+renderStats(); renderFilters(); renderProjects("All");
+</script>
+</body>
+</html>
